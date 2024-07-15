@@ -38,5 +38,42 @@
 @endsection
 
 @section('js')
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var menuBtn = document.querySelector('.navbar-toggler');
+      var sidebarMenu = document.querySelector('.sidebar-menu');
+      var dashboardLink = document.querySelector('.dashboard-link');
+      var dashboardSubmenu = document.querySelector('.sidebar-submenu');
+      var productsLink = document.querySelector('.products-link');
+      var productsSubmenu = document.querySelectorAll('.sidebar-submenu')[1];
+      var ordersLink = document.querySelector('.orders-link');
+      var ordersSubmenu = document.querySelectorAll('.sidebar-submenu')[2];
+      var customersLink = document.querySelector('.customers-link');
+      var customersSubmenu = document.querySelectorAll('.sidebar-submenu')[3];
+    
+      menuBtn.addEventListener('click', function() {
+        sidebarMenu.classList.toggle('show');
+      });
+    
+      dashboardLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        dashboardSubmenu.classList.toggle('d-none');
+      });
+    
+      productsLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        productsSubmenu.classList.toggle('d-none');
+      });
+    
+      ordersLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        ordersSubmenu.classList.toggle('d-none');
+      });
+    
+      customersLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        customersSubmenu.classList.toggle('d-none');
+      });
+    });
+    </script>
 @endsection

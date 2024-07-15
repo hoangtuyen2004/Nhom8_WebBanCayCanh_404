@@ -11,17 +11,17 @@
     <link rel="stylesheet" href="resources\css\app.css">
     @yield('css')
 </head>
-<body>
+<body style="background :#e4e2e2;">
     <header >
         @include('admins.blocks.header')
     </header>
 
     <main class="container-fluid">
         <div class="row"  >
-            <aside class="col-3" style="margin:0; padding :0 ; box-sizing:border-box">
+            <aside class="col-2" style="margin:0; padding :0 ; box-sizing:border-box">
                 @include('admins.blocks.sidebar')
             </aside>
-            <div class="content col-9 my-5">
+            <div class=" col-10 my-2" >
                 @yield('content')
             </div>
         </div>
@@ -33,7 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @yield('js')
     <!-- Các script -->
 </body>
