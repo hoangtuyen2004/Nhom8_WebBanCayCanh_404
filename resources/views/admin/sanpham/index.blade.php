@@ -31,8 +31,32 @@
                 <th>Trạng thái</th>
             </thead>
             <tbody>
-               
-            </tbody>
+                    @foreach ($san_phams as $index => $item)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>
+                                <img src="{{ Storage::url($item->hinh_anh) }}" width="100" height="100" alt="">
+                            </td>
+                            <td>{{ $item->ten_san_pham }}</td>
+                            <td>{{ $item->gia }}</td>
+                            <td>{{ $item->so_luong }}</td>
+                            <td>{{ $item->ngay_nhap }}</td>
+                            <td>{{ $item->mo_ta }}</td>
+                            <td>{{ $item->ten_danh_muc }}</td>
+                            <td>
+                                <a href="{{ route('sanpham.edit', $item->id) }}">
+                                    <button class="btn bg-warning-subtle text-warning-emphasis">Sửa</button>
+                                </a>
+                                <form action="{{ route('sanpham.destroy', $item->id) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('ban co muon xoa khong?')" class="btn btn-danger">Xóa</button>
+                                </form>
+                                
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
         </table>
     </div>
 @endsection
