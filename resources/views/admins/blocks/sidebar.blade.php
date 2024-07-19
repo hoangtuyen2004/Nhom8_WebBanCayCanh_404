@@ -45,11 +45,9 @@
       </li>
       <hr>
       <li class="mb-3">
-        <a href="#" class="text-dark text-decoration-none customers-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash-fill" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5M6 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-        </svg>Danh mục</a>
+        <a href="" class="text-dark text-decoration-none customers-link"><i class="fa-solid fa-layer-group"></i> Danh mục</a>
         <ul class="list-unstyled sidebar-submenu ms-3 mt-2 d-none">
-          <li class="mb-2"><a href="#" class="text-dark text-decoration-none">tất cả danh mục</a></li>
+          <li class="mb-2"><a href="{{ route('danhmuc.index') }}" class="text-dark text-decoration-none">tất cả danh mục</a></li>
           <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Thêm danh mục</a></li>
           <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Sửa Danh mục</a></li>
         </ul>

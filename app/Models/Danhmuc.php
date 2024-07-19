@@ -4,15 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class Danhmuc extends Model
+class DanhMuc extends Model
 {
     use HasFactory;
 
-    private $table = 'danh_mucs';
+    public function getDanhMuc() {
+        $danhMucs = DB::table("danh_mucs")->orderBy('id','DESC')->get();
+        return $danhMucs;
+    }
 
-    private $fillable =[
-        'ma_danh_muc',
-        'ten_danh_muc'
+    protected $table = "danh_mucs";
+    protected $fillable = [
+        "ma_danh_muc",
+        "ten_danh_muc",
     ];
 }

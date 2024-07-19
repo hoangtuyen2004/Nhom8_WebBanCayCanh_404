@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
-use App\Models\Danhmuc;
+use App\Models\DanhMuc;
 use Illuminate\Http\Request;
 
-class DanhmucController extends Controller
+class DanhMucController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    protected $danhmucs;
+    public function __construct() {
+        $this->danhmucs = new DanhMuc();
+    }
     public function index()
-    {
-         return view('admins.sanpham.index');
+    {   
+        $data['title'] = 'Quản lí danh mục | ADMIN';
+        $data['danhmucs'] = $this->danhmucs->getDanhMuc();
+        return view("admins.danhmuc.index",$data);
     }
 
     /**
@@ -35,7 +41,7 @@ class DanhmucController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Danhmuc $danhmuc)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +49,7 @@ class DanhmucController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Danhmuc $danhmuc)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +57,7 @@ class DanhmucController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Danhmuc $danhmuc)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +65,7 @@ class DanhmucController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Danhmuc $danhmuc)
+    public function destroy(string $id)
     {
         //
     }
