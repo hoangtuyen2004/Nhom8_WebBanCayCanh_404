@@ -20,4 +20,8 @@ class DanhMuc extends Model
         "ma_danh_muc",
         "ten_danh_muc",
     ];
+
+    public function sanPhams(){
+        return $this->hasMany(SanPham::class, 'danh_muc_id');
+    }
 }

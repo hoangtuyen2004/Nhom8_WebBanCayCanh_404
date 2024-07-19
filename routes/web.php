@@ -3,9 +3,8 @@
 use App\Http\Controllers\admins\DanhMucController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\admins\SanphamController;
-
-
+use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +17,16 @@ use App\Http\Controllers\admins\SanphamController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('admins.sanpham.index');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
+// Route resouce
+Route::resource('sanpham', SanPhamController::class);
 
     Route::get('/',[SanphamController::class,'index']);
     
 // Route::resource('/',[HomeController::class,'index']);
 // route::get('/',[HomeController::class,'index']);
     Route::resource('danhmuc', DanhMucController::class);
+// Route::resource('test', TestController::class);
