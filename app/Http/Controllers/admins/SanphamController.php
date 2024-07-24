@@ -25,7 +25,7 @@ class SanPhamController extends Controller
         // dd($listSanPham);
 
         // Gọi đến view muốn hiển thị ra
-        return view('admin.sanpham.index', ['san_phams' => $listSanPham]);
+        return view('admins.sanpham.index', ['san_phams' => $listSanPham]);
     }
 
     /**
