@@ -17,20 +17,20 @@ class SanPham extends Model
         'gia',
         'ngay_nhap',
         'mo_ta',
-        'danh_muc_id'
+        'ma_danh_mucs'
     ];
     public $table = 'san_phams';
 
     public $timestamp = false;
 
     public function danhMuc(){
-        return $this->belongsTo(DanhMuc::class, 'danh_muc_id');
+        return $this->belongsTo(DanhMuc::class, 'ma_danh_mucs');
     }
     // Cách 1: Sử Query Builer
     public function getAll()
     {
         $san_phams = DB::table('san_phams')
-            ->join('danh_mucs', 'san_phams.danh_muc_id', '=', 'danh_mucs.id')
+            ->join('danh_mucs', 'san_phams.ma_danh_mucs', '=', 'danh_mucs.id')
             ->select('san_phams.*', 'danh_mucs.ten_danh_muc')
             ->orderBy('san_phams.id', 'DESC')
             ->get();

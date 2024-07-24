@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\SanPhamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SanPhamController;
+// use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 // Route resouce
-Route::resource('sanpham', SanPhamController::class);
+Route::resource('sanpham', SanphamController::class);
 
     Route::get('/',[SanphamController::class,'index']);
     
