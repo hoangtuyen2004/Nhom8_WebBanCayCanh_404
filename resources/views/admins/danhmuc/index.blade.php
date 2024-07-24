@@ -5,37 +5,82 @@
 
 {{-- mã css --}}
 @section('css')
-
 @endsection
 
 @section('content')
-    <section class="content">
-        <table class="table">
-            <thead>
-                <th>STT</th>
-                <th>ID</th>
-                <th>Mã Danh Mục</th>
-                <th>Tên Danh Mục</th>
-                <th>Lựa chọn</th>
-            </thead>
-            <tbody>
-                @foreach ($danhmucs as $key => $danhmuc)
-                    <tr>
-                        <td>{{$key+1}}</td>
-                        <td>{{$danhmuc->id}}</td>
-                        <td>{{$danhmuc->ma_danh_muc}}</td>
-                        <td>{{$danhmuc->ten_danh_muc}}</td>
-                        <td>
-                            <a href="#" class="btn btn-warning">Sửa</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </section>
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Basic Table</h5>
+                            <span>use class <code>table</code> inside table
+                                element</span>
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li class="first-opt">
+                                        <i class="feather icon-chevron-left open-card-option"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-maximize full-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-minus minimize-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-refresh-cw reload-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-trash close-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-chevron-left open-card-option"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 {{-- mã javascript --}}
 @section('js')
-
 @endsection
