@@ -1,4 +1,4 @@
-{{-- extends dùng đề kế thừa Layout --}}
+
 @extends('layouts.admin')
 
 @section('title')
@@ -13,11 +13,7 @@
         <h4 class="card-header">{{ $title }}</h4>
         <div class="card-body">
             <form action="{{ route('sanpham.store') }}" method="POST" enctype="multipart/form-data">
-                {{-- LÀM VIỆC VỚI FORM TRONG LARAVEL --}}
-                {{-- 
-                    CSRF Field: là 1 trường ẩn mà Laravel bắt buộc phải có trong form
-                                cho mục đích bảo mật
-                --}}
+               
                 @csrf
 
                 <div class="mb-3">
