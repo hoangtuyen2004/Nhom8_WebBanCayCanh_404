@@ -1,5 +1,5 @@
 {{-- extends: Chỉ định layout được sử dụng --}}
-@extends('layout.admin')
+@extends('layouts.admin')
 
 {{-- section: định nghĩa nội dung của section --}}
 @section('content')
