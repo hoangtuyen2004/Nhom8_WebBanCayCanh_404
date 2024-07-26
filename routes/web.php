@@ -25,9 +25,6 @@ Route::get('/', function () {
 // Route resouce
 Route::resource('sanpham', SanphamController::class);
 
-    Route::get('/',[SanphamController::class,'index']);
-    
-// Route::resource('/',[HomeController::class,'index']);
-// route::get('/',[HomeController::class,'index']);
-    Route::resource('danhmuc', DanhMucController::class);
-// Route::resource('test', TestController::class);
+Route::get('/',[SanphamController::class,'index']);
+
+Route::resource('danhmuc', DanhMucController::class);
