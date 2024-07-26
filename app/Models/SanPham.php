@@ -11,15 +11,16 @@ class SanPham extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hinh_anh',
+        'ma_san_pham',
         'ten_san_pham',
+        'anh_san_pham',
         'so_luong',
-        'gia',
-        'ngay_nhap',
-        'mo_ta',
+        'mo_ta_san_pham',
+        'gia_san_pham',
+        'ngay_dang',
         'ma_danh_mucs'
     ];
-    public $table = 'san_phams';
+    protected $table = 'san_phams';
 
     public $timestamp = false;
 

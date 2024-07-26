@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SanPhamRequest;
+use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,11 +23,8 @@ class SanPhamController extends Controller
      */
     public function index()
     {
-        $listSanPham = $this->san_phams->getAll();
-        // dd($listSanPham);
-
-        // Gọi đến view muốn hiển thị ra
-        return view('admins.sanpham.index', ['san_phams' => $listSanPham]);
+        $data['listSanphams'] = SanPham::query()->orderBy('id','desc')->get();
+        return view('admins.sanpham.index', $data);
     }
 
     /**
@@ -33,42 +32,35 @@ class SanPhamController extends Controller
      */
     public function create()
     {
-        // lấy danh mục sản phẩm
-        // Sử dụng query builder
-        $danh_mucs = DB::table('danh_mucs')->get();
-
-        // Hiển ra view add
-        return view('admin.sanpham.add', ['danh_mucs' => $danh_mucs]);
+        // $danh_mucs = DB::table('danh_mucs')->get();
+        $data['danh_mucs'] = DanhMuc::query()->get();
+        return view('admins.sanpham.create',$data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SanPhamRequest $request)
     {
-        // Xử lý ảnh
-        if ($request->hasFile('hinh_anh')) {
-            // Nếu có đẩy hình ảnh
-            $filename = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
-        } else {
-            $filename = null;
+        if($request->isMethod('POST')) {
+            $params = $request->validate([
+                "ma_san_pham"=>"required|max:10",
+                "ten_san_pham"=>"required|max:255",
+                "so_luong"=>"required|integer",
+                "gia_san_pham" => "required",
+                "mo_ta_san_pham" => "required|max:255",
+                "ma_danh_mucs" => "", 
+            ]);
+            $params['ngay_dang'] = date('Y-m-d');
+            if($request->hasFile('anh_san_pham')) {
+                $params['anh_san_pham'] = $request->file('anh_san_pham')->store('uploads/sanpham', 'public');
+            }
+            else{
+                $params['anh_san_pham'] = null;
+            }
+            SanPham::query()->insert($params);
+            return redirect()->route('sanpham.index')->with('success', 'Thêm mới thành công!');
         }
-
-        $dataInsert = [
-            'hinh_anh' => $filename,
-            'ten_san_pham' => $request->ten_san_pham,
-            'so_luong' => $request->so_luong,
-            'gia' => $request->gia,
-            'ngay_nhap' => $request->ngay_nhap,
-            'mo_ta' => $request->mo_ta,
-            'danh_muc_id' => $request->danh_muc_id,
-        ];
-
-        // dd($dataInsert);
-
-        $this->san_phams->createSanPham($dataInsert);
-
-        return redirect()->route('sanpham.index');
     }
 
     /**
@@ -84,9 +76,7 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        // form sửa sản phẩm
-        // Lấy sản phẩm theo id 
-        $sanPham = $this->san_phams->find($id);
+        $sanPham = SanPham::query()->find($id);
         $danh_mucs = DB::table('danh_mucs')->get();
         if (!$sanPham) {
             return redirect()->route('sanpham.index');
@@ -137,18 +127,13 @@ class SanPhamController extends Controller
     {
         // Xử lý xóa sản phẩm
         // Tìm sản phẩm  
-        $sanPham = $this->san_phams->find($id);
-
-        if (!$sanPham) {
-            return redirect()->route('sanpham.index');
-        }
+        $sanPham = SanPham::query()->findOrFail($id);
         // Xóa hình ảnh của sản phẩm 
         if ($sanPham->hinh_anh) {
             Storage::disk('public')->delete($sanPham->hinh_anh);
         }
         // xóa sản phẩm trong db 
         $sanPham->delete();
-
-        return redirect()->route('sanpham.index');
+        return redirect()->route('sanpham.index')->with('success', 'Xóa thành công!');
     }
 }

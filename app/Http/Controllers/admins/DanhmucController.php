@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DanhMucRequest;
 use App\Models\DanhMuc;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,7 @@ class DanhMucController extends Controller
     }
     public function index()
     {   
-        $data['title'] = 'Quản lí danh mục | ADMIN';
-        $data['danhmucs'] = $this->danhmucs->getDanhMuc();
+        $data['danhmucs'] = DanhMuc::query()->paginate(5);
         return view("admins.danhmuc.index",$data);
     }
 
@@ -28,14 +28,22 @@ class DanhMucController extends Controller
     public function create()
     {
         //
+        return view("admins.danhmuc.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DanhMucRequest $request)
     {
-        //
+        if ($request->isMethod("POST")) 
+        {
+            // dd($request->all());
+            $params = $request->except('_token');
+            // dd($params);
+            DanhMuc::create($params);
+            return redirect()->route('danhmuc.index')->with('success','Thêm mới thành công');
+        }
     }
 
     /**
@@ -52,6 +60,8 @@ class DanhMucController extends Controller
     public function edit(string $id)
     {
         //
+        $data['danhmuc'] = DanhMuc::query()->find($id);
+        return view("admins.danhmuc.update", $data);
     }
 
     /**
@@ -60,13 +70,25 @@ class DanhMucController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        if ($request->isMethod('PUT')) {
+            # code...
+            $params = $request->only("ma_danh_muc", "ten_danh_muc");
+            $danhmuc = DanhMuc::query()->find($id);
+            $danhmuc->update($params);
+            return redirect()->route("danhmuc.index")->with("success","Chỉnh sửa thành công");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         //
+        if($request->isMethod('DELETE')) {
+            $danhMuc = DanhMuc::query()->findOr($id);
+            $danhMuc->delete();
+            return redirect()->route('danhmuc.index')->with('success','Xóa thành công');
+        }
     }
 }
