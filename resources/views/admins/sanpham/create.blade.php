@@ -1,3 +1,4 @@
+
 {{-- extends: Chỉ định layout được sử dụng --}}
 @extends('layouts.admin')
 

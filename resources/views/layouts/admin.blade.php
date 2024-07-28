@@ -1,41 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>@yield('title')</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @include('admins.blocks.head')
-    @yield('css')
-</head>
-<body>
+{{-- extends: Chỉ định layout được sử dụng --}}
+@extends('layouts.admin')
 
-    <div class="loader-bg">
-        <div class="loader-bar"></div>
-    </div>
-
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
-            {{-- HEADER --}}
-           @include('admins.blocks.header')
-
-            <div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
-                    {{-- SIDEBAR --}}
-                    @include('admins.blocks.sidebar')
-                    <div class="pcoded-content">
-                        {{-- CONTENT --}}
-                        @yield('content')
-                    </div>
+{{-- section: định nghĩa nội dung của section --}}
+@section('content')
+    <div class="card">
+        <h4 class="card-header">Sửa sản phẩm</h4>
+        <div class="card-body">
+            <form action="{{ route('sanpham.update', $sanPham->id) }}" method="POST" enctype="multipart/form-data">
+                {{-- 1 cơ chế bảo mật của laravel --}}
+                @method('put')
+                @csrf
+                <div class="mb-3">
+                    <label for="" class="form-label">Hình ảnh:</label>
+                    <input type="file" class="form-control" name="hinh_anh">
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Tên sản phẩm:</label>
+                    <input type="text" class="form-control" name="ten_san_pham" value="{{$sanPham->ten_san_pham}}" placeholder="Nhập tên sản phẩm">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Số lượng:</label>
+                    <input type="number" class="form-control" value="{{$sanPham->so_luong}}" min="1" name="so_luong"
+                        placeholder="Nhập số lượng sản phẩm">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Giá sản phẩm:</label>
+                    <input type="number" class="form-control" value="{{$sanPham->gia}}" min="1" name="gia"
+                        placeholder="Nhập giá sản phẩm">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Ngày nhập:</label>
+                    <input type="date" class="form-control" min="1" value="{{$sanPham->ngay_nhap}}" name="ngay_nhap">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Mô tả:</label>
+                    <textarea class="form-control" rows="3" name="mo_ta"placeholder="Nhập mô tả sản phẩm">{{$sanPham->mo_ta}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Danh mục:</label>
+                    <select class="form-select" name="danh_muc_id">
+                        @foreach ($danh_mucs as $item)
+                            <option {{ $item->id == $sanPham->danh_muc_id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->ten_danh_muc }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Sửa sp</button>
+                </div>
+            </form>
         </div>
     </div>
-    {{-- SCRIPT --}}
-    @include('admins.blocks.javascript')
-    @yield('js')
-</body>
-
-
-</html>
+@endsection
