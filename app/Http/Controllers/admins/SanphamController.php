@@ -1,68 +1,80 @@
 <?php
 
-namespace App\Http\Controllers\admins;
+namespace App\Http\Controllers\Admins;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\SanPhamRequest;
-use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SanPhamRequest;
 use Illuminate\Support\Facades\Storage;
 
 class SanPhamController extends Controller
 {
-    public $san_phams;
+    // Sử dụng khi dùng Raw Query hoặc Query Builder
+    public $san_pham;
 
     public function __construct()
     {
-        $this->san_phams = new SanPham();
+        $this->san_pham = new SanPham();
     }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // use Illuminate\Http\Request;
+    public function index(Request $request)
     {
-        $data['listSanphams'] = SanPham::query()->orderBy('id','desc')->get();
-        return view('admins.sanpham.index', $data);
+        // Sử dụng khi dùng Raw Query hoặc Query Builder
+        // Lấy dữ liệu của sản phẩm
+        // $listSanPham = $this->san_pham->getList();
+
+        // Lấy dữ liệu từ form search
+        $search = $request->input('search');
+        $searchTrangThai = $request->input('searchTrangThai');
+
+        // Sử dụng Eloquent
+        $listSanPham = SanPham::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('ma_san_pham', 'like', "%{$search}%")
+                            ->orWhere('ten_san_pham', 'like', "%{$search}%");
+            })
+            ->when($searchTrangThai !== null, function ($query) use ($searchTrangThai) {
+                return $query->where('trang_thai', '=', $searchTrangThai);
+            })
+            ->paginate(2);
+
+        $title = "Danh sách sản phẩm";
+
+        return view('admins.sanpham.index', compact('title', 'listSanPham'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        // $danh_mucs = DB::table('danh_mucs')->get();
-        $data['danh_mucs'] = DanhMuc::query()->get();
-        return view('admins.sanpham.create',$data);
+        $title = "Thêm sản phẩm";
+
+        return view('admins.sanpham.create', compact('title'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+  
+    public function store(SanPhamRequest $request)
     {
-        if($request->isMethod('POST')) {
-            $params = $request->validate([
-                "ma_san_pham"=>"required|max:10",
-                "ten_san_pham"=>"required|max:255",
-                "so_luong"=>"required|integer",
-                "gia_san_pham" => "required",
-                "mo_ta_san_pham" => "required|max:255",
-                "ma_danh_mucs" => "", 
-            ]);
-
-            $params['ngay_dang'] = date('Y-m-d');
-
-            if($request->hasFile('anh_san_pham')) {
-                $params['anh_san_pham'] = $request->file('anh_san_pham')->store('uploads/sanpham', 'public');
+    
+        if ($request->isMethod('POST')) {
+       
+     
+            $params = $request->except('_token');
+            if ($request->hasFile('hinh_anh')) {
+                $filename = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
+            } else {
+                $filename = null;
             }
-            else{
-                $params['anh_san_pham'] = null;
-            }
-            // dd($params);
+
+            $params['hinh_anh'] = $filename;
+
+     
             SanPham::create($params);
-            return redirect()->route('sanpham.index')->with('success', 'Thêm mới thành công!');
+
+
+            return redirect()->route('sanpham.index')->with('success', 'Thêm sản phầm thành công!');
         }
     }
 
@@ -79,64 +91,61 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        $sanPham = SanPham::query()->find($id);
-        $danh_mucs = DB::table('danh_mucs')->get();
-        if (!$sanPham) {
-            return redirect()->route('sanpham.index');
-        }
-        return view('admins.sanpham.update', compact('sanPham', 'danh_mucs'));
+        $title = "Chỉnh sửa thông tin sản phẩm";
+
+        $sanPham = $this->san_pham->getDetailProduct($id);
+        return view('admins.sanpham.update', compact('title', 'sanPham'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SanPhamRequest $request, string $id)
     {
-    
-        // Lấy lại thông tin sản phẩm
-        $sanPham = $this->san_phams->find($id);
+        if ($request->isMethod('PUT')) {
+            $params = $request->except('_token', '_method');
+            $sanPham = $this->san_pham->getDetailProduct($id);
 
-        if ($request->hasFile('hinh_anh')) {
-            // Nếu có ảnh cũ thì xóa đi 
-            if ($sanPham->hinh_anh) {
-                Storage::disk('public')->delete($sanPham->hinh_anh);
+      
+            if ($request->hasFile('hinh_anh')) {
+                if ($sanPham->hinh_anh) {
+                    Storage::disk('public')->delete($sanPham->hinh_anh);
+                }
+                $params['hinh_anh'] = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
+            } else {
+                $params['hinh_anh'] = $sanPham->hinh_anh;
             }
 
-            // lưu ảnh mới 
-            $fileName = $request->file('hinh_anh')->store('uploads/sanpham', 'public');
-        }else{
-            $fileName = $sanPham->hinh_anh;
-        }
-        
-        $dataUpdate = [
-            'anh_san_pham' => $fileName,
-            'ten_san_pham' => $request->ten_san_pham,
-            'so_luong' => $request->so_luong,
-            'gia_san_pham' => $request->gia,
-            'ngay_dang' => $request->ngay_nhap,
-            'mo_ta_san_pham' => $request->mo_ta,
-            'ma_danh_mucs' => $request->danh_muc_id,
-        ];
+           
+            $this->san_pham->updateProduct($id, $params);
 
-        $sanPham->updateSanPham($dataUpdate, $id);
-        
-        return redirect()->route('sanpham.index');
+            return redirect()->route('sanpham.index')->with('success', 'Cập nhật sản phầm thành công!');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        // Xử lý xóa sản phẩm
-        // Tìm sản phẩm  
-        $sanPham = SanPham::query()->findOrFail($id);
-        // Xóa hình ảnh của sản phẩm 
-        if ($sanPham->hinh_anh) {
-            Storage::disk('public')->delete($sanPham->hinh_anh);
+        if ($request->isMethod('DELETE')) {
+            
+            $sanPham = SanPham::query()->findOrFail($id);
+
+            $sanPham->delete();
+
+            if ($sanPham->hinh_anh && Storage::disk('public')->exists($sanPham->hinh_anh)) {
+                Storage::disk('public')->delete($sanPham->hinh_anh);
+            }
+
+            return redirect()->route('sanpham.index')->with('success', 'Xóa sản phầm thành công!');
         }
-        // xóa sản phẩm trong db 
-        $sanPham->delete();
-        return redirect()->route('sanpham.index')->with('success', 'Xóa thành công!');
+
+       
+    }
+
+    public function test()
+    {
+        dd("Đây là phương thức mới");
     }
 }
