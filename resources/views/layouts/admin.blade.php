@@ -1,40 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <title>@yield('title')</title>
+{{-- extends: Chỉ định layout được sử dụng --}}
+@extends('layouts.admin')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="resources\css\app.css">
-    @yield('css')
-</head>
-<body style="background :#e4e2e2;">
-    <header >
-        @include('admins.blocks.header')
-    </header>
-
-    <main class="container-fluid">
-        <div class="row"  >
-            <aside class="col-2" style="margin:0; padding :0 ; box-sizing:border-box">
-                @include('admins.blocks.sidebar')
-            </aside>
-            <div class=" col-10 my-2" >
-                @yield('content')
-            </div>
+{{-- section: định nghĩa nội dung của section --}}
+@section('content')
+    <div class="card">
+        <h4 class="card-header">Sửa sản phẩm</h4>
+        <div class="card-body">
+            <form action="{{ route('sanpham.update', $sanPham->id) }}" method="POST" enctype="multipart/form-data">
+                {{-- 1 cơ chế bảo mật của laravel --}}
+                @method('put')
+                @csrf
+                <div class="mb-3">
+                    <label for="" class="form-label">Hình ảnh:</label>
+                    <input type="file" class="form-control" name="hinh_anh">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Tên sản phẩm:</label>
+                    <input type="text" class="form-control" name="ten_san_pham" value="{{$sanPham->ten_san_pham}}" placeholder="Nhập tên sản phẩm">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Số lượng:</label>
+                    <input type="number" class="form-control" value="{{$sanPham->so_luong}}" min="1" name="so_luong"
+                        placeholder="Nhập số lượng sản phẩm">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Giá sản phẩm:</label>
+                    <input type="number" class="form-control" value="{{$sanPham->gia}}" min="1" name="gia"
+                        placeholder="Nhập giá sản phẩm">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Ngày nhập:</label>
+                    <input type="date" class="form-control" min="1" value="{{$sanPham->ngay_nhap}}" name="ngay_nhap">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Mô tả:</label>
+                    <textarea class="form-control" rows="3" name="mo_ta"placeholder="Nhập mô tả sản phẩm">{{$sanPham->mo_ta}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Danh mục:</label>
+                    <select class="form-select" name="danh_muc_id">
+                        @foreach ($danh_mucs as $item)
+                            <option {{ $item->id == $sanPham->danh_muc_id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->ten_danh_muc }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Sửa sp</button>
+                </div>
+            </form>
         </div>
-    </main>
-    
-    <footer>
-        @include('admins.blocks.footer')
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    @yield('js')
-    <!-- Các script -->
-</body>
-   
-</html>
+    </div>
+@endsection

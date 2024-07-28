@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('san_phams', function (Blueprint $table) {
             $table->id();
-            $table->string('ma_san_pham', 10)->unique();
-            $table->string('ten_san_pham', 100);
-            $table->double('gia', 8, 2);
-            $table->integer('so_luong')->nullable();
-            $table->date('ngay_nhap');
-            $table->text('mo_ta')->nullable();
-            $table->boolean('trang_thai')->default(0);
+
+            $table->string('ma_san_pham',10)->unique();
+            $table->string('ten_san_pham',255);
+            $table->string('anh_san_pham',255);
+            $table->string('mo_ta_san_pham',555);
+            $table->double('gia_san_pham');
+            $table->string('ma_danh_mucs',10);
             $table->timestamps();
         });
     }

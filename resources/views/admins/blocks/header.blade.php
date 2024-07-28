@@ -1,7 +1,77 @@
-<nav class="d-flex align-items-center justify-content-between p-2 bg-primary shadow-sm">
-  <div  class="logo fw-bold text-light me-auto fs-4">Sell Trees</div>
-  <button class="btn btn-primary fs-5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-  </svg></button>
+
+<nav class="navbar header-navbar pcoded-header">
+    <div class="navbar-wrapper">
+        <div class="navbar-logo">
+            <a href="index.html">
+                <img class="img-fluid" src="files/assets/images/logo.png" alt="Theme-Logo" />
+            </a>
+            <a class="mobile-menu" id="mobile-collapse" href="#!">
+                <i class="feather icon-menu icon-toggle-right"></i>
+            </a>
+            <a class="mobile-options waves-effect waves-light">
+                <i class="feather icon-more-horizontal"></i>
+            </a>
+        </div>
+        <div class="navbar-container container-fluid">
+            <ul class="nav-left">
+                <li class="header-search">
+                    <div class="main-search morphsearch-search">
+                        <div class="input-group">
+                            <span class="input-group-prepend search-close">
+                                <i class="feather icon-x input-group-text"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Enter Keyword">
+                            <span class="input-group-append search-btn">
+                                <i class="feather icon-search input-group-text"></i>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                        <i class="full-screen feather icon-maximize"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-right">
+                <li class="user-profile header-notification">
+                    <div class="dropdown-primary dropdown">
+                        <div class="dropdown-toggle" data-toggle="dropdown">
+                            <span>ADMIN</span>
+                            <i class="feather icon-chevron-down"></i>
+                        </div>
+                        <ul class="show-notification profile-notification dropdown-menu"
+                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            <li>
+                                <a href="#!">
+                                    <i class="feather icon-settings"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="feather icon-user"></i> Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="email-inbox.html">
+                                    <i class="feather icon-mail"></i> My Messages
+                                </a>
+                            </li>
+                            <li>
+                                <a href="auth-lock-screen.html">
+                                    <i class="feather icon-lock"></i> Lock Screen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="auth-sign-in-social.html">
+                                    <i class="feather icon-log-out"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </nav>

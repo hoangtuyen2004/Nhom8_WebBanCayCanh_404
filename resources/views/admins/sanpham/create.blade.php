@@ -1,115 +1,84 @@
 
+{{-- extends: Chỉ định layout được sử dụng --}}
 @extends('layouts.admin')
 
-@section('title')
-    {{ $title }}
-@endsection
-
-@section('css')
-@endsection
-
+{{-- section: định nghĩa nội dung của section --}}
 @section('content')
-    <div class="card">
-        <h4 class="card-header">{{ $title }}</h4>
-        <div class="card-body">
-            <form action="{{ route('sanpham.store') }}" method="POST" enctype="multipart/form-data">
-               
-                @csrf
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Mã sản phẩm</label>
-                    <input type="text" class="form-control @error('ma_san_pham') is-invalid @enderror" name="ma_san_pham"
-                        placeholder="Nhập mã sản phẩm" value="{{ old('ma_san_pham') }}">
-                    @error('ma_san_pham')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="card">
+                        <h4 class="card-header">Thêm sản phẩm</h4>
+                        <div class="container">
+                            <form action="{{ route('sanpham.store') }}" method="POST" enctype="multipart/form-data">
+                                {{-- 1 cơ chế bảo mật của laravel --}}
+                                @csrf
+                                <div class="row my-3">
+                                    <div class="col">
+                                        <label for="" class="form-lable">Mã sản phẩm</label>
+                                        <input type="text" name="ma_san_pham" class="form-control ">
+                                        @error('ma_san_pham')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label for="" class="form-lable">Tên sản phẩm</label>
+                                        <input type="text" name="ten_san_pham" class="form-control">
+                                        @error('ten_san_pham')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="my-3">
+                                    <label for="" class="form-lable">Ảnh sản phẩm</label>
+                                    <input type="file" name="anh_san_pham" class="form-control">
+                                    @error('anh_san_pham')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                </div>
+                                <div class="row my-3">
+                                    <div class="col">
+                                        <label for="" class="form-lable">Số lượng</label>
+                                        <input type="number" name="so_luong" class="form-control ">
+                                        @error('so_luong')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label for="" class="form-lable">Giá</label>
+                                        <input type="number" name="gia_san_pham" class="form-control">
+                                        @error('gia_san_pham')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="my-3">
+                                    <label for="" class="form-lable">Mô tả sản phẩm</label>
+                                    <textarea name="mo_ta_san_pham" class="form-control" cols="15" rows="10"></textarea>
+                                    @error('mo_ta_san_pham')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Danh mục:</label>
+                                    <select class="form-select form-control-inverse fill" name="ma_danh_mucs">
+                                        @foreach ($danh_mucs as $item)
+                                            <option value="{{ $item->id }}">{{ $item->ten_danh_muc }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('ma_danh_muc')
+                                            <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                </div>
+                                <div class="mb-3 d-flex justify-content-center" style="gap: 20px">
+                                    <button type="submit" class="btn btn-success">Thêm mới</button>
+                                    <a class="btn btn-info" href="{{ route('sanpham.index') }}">Quay lại</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Tên sản phẩm</label>
-                    <input type="text" class="form-control @error('ten_san_pham') is-invalid @enderror"
-                        name="ten_san_pham" placeholder="Nhập tên sản phẩm" value="{{ old('ten_san_pham') }}">
-                    @error('ten_san_pham')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Giá sản phẩm</label>
-                    <input type="number" class="form-control @error('gia') is-invalid @enderror" name="gia"
-                        min="1" placeholder="Nhập giá sản phẩm" value="{{ old('gia') }}">
-                    @error('gia')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Số lượng</label>
-                    <input type="number" class="form-control @error('so_luong') is-invalid @enderror" name="so_luong"
-                        min="0" placeholder="Nhập số lượng sản phẩm" value="{{ old('so_luong') }}">
-                    @error('so_luong')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Ngày nhập</label>
-                    <input type="date" class="form-control @error('ngay_nhap') is-invalid @enderror" name="ngay_nhap"
-                        value="{{ old('ngay_nhap') }}">
-                    @error('ngay_nhap')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Mô tả</label>
-                    <textarea name="mo_ta" cols="30" rows="3" class="form-control" placeholder="Nhập mô tả sản phẩm"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Trạng thái</label>
-                    <select name="trang_thai" class="form-select @error('trang_thai') is-invalid @enderror">
-                        <option selected>Trạng thái của sản phẩm</option>
-                        <option value="0">Hết hàng</option>
-                        <option value="1">Còn hàng</option>
-                    </select>
-                    @error('trang_thai')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Hình ảnh</label>
-                    <input type="file" class="form-control" name="hinh_anh" onchange="showImage(event)">
-                </div>
-                <img id="image_san_pham" src="" alt="Hình ảnh sản phầm" style="width: 200px; display: none">
-
-                <div class="mb-3 d-flex justify-content-center">
-                    <button type="reset" class="btn btn-outline-secondary me-3">Nhập lại</button>
-                    <button type="submit" class="btn btn-success">Thêm mới</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-@endsection
-
-@section('js')
-    <script>
-        function showImage(event) {
-            const image_san_pham = document.getElementById('image_san_pham');
-
-            const file = event.target.files[0];
-
-            const reader = new FileReader();
-
-            reader.onload = function() {
-                image_san_pham.src = reader.result;
-                image_san_pham.style.display = 'block';
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-@endsection
+    @endsection

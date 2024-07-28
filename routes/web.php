@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\SanPhamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\admins\SanphamController;
-
-
+// use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,16 @@ use App\Http\Controllers\admins\SanphamController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('admins.sanpham.index');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
+// Route resouce
+Route::resource('sanpham', SanphamController::class);
 
-    Route::get('/',[SanphamController::class,'index']);
-    
-    Route::get('sanpham/test', [SanPhamController::class, 'test'])->name('sanpham.test');
-    Route::resource('sanpham', SanPhamController::class);
-    Auth::routes();
-    
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/',[SanphamController::class,'index']);
+
+Route::resource('danhmuc', DanhMucController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

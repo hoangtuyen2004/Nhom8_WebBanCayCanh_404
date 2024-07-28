@@ -1,86 +1,85 @@
-
 @extends('layouts.admin')
-
 @section('title')
-    {{ $title }}
+    Quản lí sản phẩm | ADMIN
 @endsection
 
+{{-- mã css --}}
 @section('css')
 @endsection
 
 @section('content')
-    <div class="card">
-        <h4 class="card-header">{{ $title }}</h4>
-        <div class="card-body">
-            {{--  --}}
-            <div class="d-flex justify-content-between">
-                <a href="{{ route('sanpham.create') }}" class="btn btn-success mb-3">Thêm sản phẩm</a>
-                <form action="{{ route('sanpham.index') }}" method="GET">
-                    @csrf
-                    <div class="input-group">
-                        <select name="searchTrangThai" class="form-select">
-                            <option value="" selected>Chọn trạng thái</option>
-                            <option value="1">Hiển thị</option>
-                            <option value="0">Ẩn</option>
-                        </select>
-                        <input type="text" class="form-control" name="search" placeholder="Tìm hiếm....">
-                        <button type="submit" class="btn btn-secondary">Tìm kiếm</button>
-                    </div>
-                </form>
-            </div>
-            {{--  --}}
-            
-            {{-- Hiển thị thông báo --}}
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Danh sách san phẩm <a class="mx-3 btn btn-success" href="{{ route('sanpham.create') }}">Thêm mới</a>
+                            </h5>
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li class="first-opt">
+                                        <i class="feather icon-chevron-left open-card-option"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-maximize full-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-minus minimize-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-refresh-cw reload-card"></i>
+                                    </li>
+                                    <li>
+                                        <i class="feather icon-chevron-left open-card-option"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-table">
+                            <table class="table text-center">
+                                <thead>
+                                    <th>STT</th>
+                                    <th>Mã sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Ảnh</th>
+                                    <th>Giá sản phẩm</th>
+                                    <th>Mô tả</th>
+                                    <th>Danh mục</th>
+                                    <th class="">Thao tác</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($listSanphams as $key=>$sanPham)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $sanPham->ma_san_pham }}</td>
+                                            <td>{{ $sanPham->ten_san_pham }}</td>
+                                            <td><img src="{{ Storage::url($sanPham->anh_san_pham) }}"  width="200px" alt="ảnh sản phẩm"></td>
+                                            <td>{{ $sanPham->gia_san_pham }}</td>
+                                            <td>{{ $sanPham->mo_ta_san_pham }}</td>
+                                            <td>{{ $sanPham->ma_danh_mucs }}</td>
+                                            <td class="row">
+                                                <div class="row">
+                                                    <a class="col btn btn-warning" href="{{ route('sanpham.edit', $sanPham->id) }}">Sửa</a>
+                                                </div>
+                                                <form class="col" action="{{ route('sanpham.destroy', $sanPham->id) }}" method="post" onsubmit="return confirm('ban co muon xoa khong?')">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Xóa</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
 
-            <table class="table">
-                <thead>
-                    <th>STT</th>
-                    <th>Hình ảnh</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Ngày nhập</th>
-                    <th>Mô tả</th>
-                    <th>Trạng thái</th>
-                    <th>Hành động</th>
-                </thead>
-                <tbody>
-                    @foreach ($listSanPham as $index => $sanPham)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>
-                                <img src="{{ Storage::url($sanPham->hinh_anh) }}" alt="Hình ảnh sản phẩm" width="150px">
-                            </td>
-                            <td>{{ $sanPham->ma_san_pham }}</td>
-                            <td>{{ $sanPham->ten_san_pham }}</td>
-                            <td>{{ $sanPham->gia }}</td>
-                            <td>{{ $sanPham->so_luong }}</td>
-                            <td>{{ $sanPham->ngay_nhap }}</td>
-                            <td>{{ $sanPham->mo_ta }}</td>
-                            <td>{{ $sanPham->trang_thai == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
-                            <td>
-                                <a href="{{ route('sanpham.edit', $sanPham->id) }}" class="btn btn-warning">Sửa</a>
-                                <form action="{{ route('sanpham.destroy', $sanPham->id) }}" method="POST"
-                                    class="d-inline" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">Xóa</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {{ $listSanPham->links('pagination::bootstrap-5') }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
-
+{{-- mã javascript --}}
 @section('js')
 @endsection
