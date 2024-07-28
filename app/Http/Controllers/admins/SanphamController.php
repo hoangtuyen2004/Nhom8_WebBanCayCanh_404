@@ -40,7 +40,7 @@ class SanPhamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SanPhamRequest $request)
+    public function store(Request $request)
     {
         if($request->isMethod('POST')) {
             $params = $request->validate([
@@ -51,14 +51,17 @@ class SanPhamController extends Controller
                 "mo_ta_san_pham" => "required|max:255",
                 "ma_danh_mucs" => "", 
             ]);
+
             $params['ngay_dang'] = date('Y-m-d');
+
             if($request->hasFile('anh_san_pham')) {
                 $params['anh_san_pham'] = $request->file('anh_san_pham')->store('uploads/sanpham', 'public');
             }
             else{
                 $params['anh_san_pham'] = null;
             }
-            SanPham::query()->insert($params);
+            // dd($params);
+            SanPham::create($params);
             return redirect()->route('sanpham.index')->with('success', 'Thêm mới thành công!');
         }
     }
@@ -81,7 +84,7 @@ class SanPhamController extends Controller
         if (!$sanPham) {
             return redirect()->route('sanpham.index');
         }
-        return view('admin.sanpham.update', compact('sanPham', 'danh_mucs'));
+        return view('admins.sanpham.update', compact('sanPham', 'danh_mucs'));
     }
 
     /**
@@ -104,15 +107,15 @@ class SanPhamController extends Controller
         }else{
             $fileName = $sanPham->hinh_anh;
         }
-
+        
         $dataUpdate = [
-            'hinh_anh' => $fileName,
+            'anh_san_pham' => $fileName,
             'ten_san_pham' => $request->ten_san_pham,
             'so_luong' => $request->so_luong,
-            'gia' => $request->gia,
-            'ngay_nhap' => $request->ngay_nhap,
-            'mo_ta' => $request->mo_ta,
-            'danh_muc_id' => $request->danh_muc_id,
+            'gia_san_pham' => $request->gia,
+            'ngay_dang' => $request->ngay_nhap,
+            'mo_ta_san_pham' => $request->mo_ta,
+            'ma_danh_mucs' => $request->danh_muc_id,
         ];
 
         $sanPham->updateSanPham($dataUpdate, $id);

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('san_phams', function (Blueprint $table) {
             $table->id();
+
             $table->string('ma_san_pham',10)->unique();
             $table->string('ten_san_pham',255);
             $table->string('anh_san_pham',255);

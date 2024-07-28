@@ -45,7 +45,7 @@ class SanPham extends Model
     {
         DB::table('san_phams')->insert(
             [
-                'hinh_anh' =>$data['hinh_anh'],
+                'anh_san_pham' =>$data['hinh_anh'],
                 'ten_san_pham' => $data['ten_san_pham'],
                 'so_luong' => $data['so_luong'],
                 'gia' => $data['gia'],

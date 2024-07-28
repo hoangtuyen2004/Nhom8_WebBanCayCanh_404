@@ -25,6 +25,9 @@ Route::get('/', function () {
 // Route resouce
 Route::resource('sanpham', SanphamController::class);
 
-Route::get('/',[SanphamController::class,'index']);
+// Route::get('/',[SanphamController::class,'index']);
 
 Route::resource('danhmuc', DanhMucController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

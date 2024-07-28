@@ -54,7 +54,7 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $sanPham->ma_san_pham }}</td>
                                             <td>{{ $sanPham->ten_san_pham }}</td>
-                                            <td><img src="{{ Storage::url($sanPham->anh_san_pham) }}" alt="ảnh sản phẩm"></td>
+                                            <td><img src="{{ Storage::url($sanPham->anh_san_pham) }}"  width="200px" alt="ảnh sản phẩm"></td>
                                             <td>{{ $sanPham->gia_san_pham }}</td>
                                             <td>{{ $sanPham->mo_ta_san_pham }}</td>
                                             <td>{{ $sanPham->ma_danh_mucs }}</td>
