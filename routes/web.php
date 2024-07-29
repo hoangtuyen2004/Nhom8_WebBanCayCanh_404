@@ -7,6 +7,7 @@ use App\Http\Controllers\TestController;
 // use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\admins\DanhMucController;
 use App\Http\Controllers\admins\SanPhamController;
+use App\Http\Controllers\admins\taikhoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::resource('sanpham', SanphamController::class);
 // Route::get('/',[SanphamController::class,'index']);
 
 Route::resource('danhmuc', DanhMucController::class);
+
+Route::resource('admin-tai-khoans', taikhoanController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -6,6 +6,7 @@ use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SanPhamRequest;
+use App\Models\DanhMuc;
 use Illuminate\Support\Facades\Storage;
 
 class SanPhamController extends Controller
@@ -50,8 +51,8 @@ class SanPhamController extends Controller
     public function create()
     {
         $title = "Thêm sản phẩm";
-
-        return view('admins.sanpham.create', compact('title'));
+        $danh_mucs = DanhMuc::query()->get();
+        return view('admins.sanpham.create', compact('title', 'danh_mucs'));
     }
 
   

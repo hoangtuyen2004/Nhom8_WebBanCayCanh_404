@@ -53,7 +53,7 @@ Quản lí danh mục | ADMIN
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $key => $danhmuc)
+                                        @foreach ($danhmucs as $key => $danhmuc)
                                             <tr class="w-100 text-center">
                                                 <th scope="row">{{$key+1}}</th>
                                                 <td>{{$danhmuc->ma_danh_muc}}</td>

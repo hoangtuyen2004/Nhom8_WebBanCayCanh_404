@@ -20,11 +20,11 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                    <a href="/admin-tai-khoans" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
                             <i class="feather icon-gitlab"></i>
                         </span>
-                        <span class="pcoded-mtext">Advance</span>
+                        <span class="pcoded-mtext">Quản lý tài khoản</span>
                     </a>
                 </li>
             </ul>
