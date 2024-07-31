@@ -23,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Route::
 // Route resouce
 Route::resource('sanpham', SanphamController::class);
 
