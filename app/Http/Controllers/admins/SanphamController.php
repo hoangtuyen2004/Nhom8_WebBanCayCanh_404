@@ -32,7 +32,7 @@ class SanPhamController extends Controller
         $searchTrangThai = $request->input('searchTrangThai');
 
         // Sử dụng Eloquent
-        $listSanPham = SanPham::query()
+        $listSanPhams = SanPham::query()
             ->when($search, function ($query, $search) {
                 return $query->where('ma_san_pham', 'like', "%{$search}%")
                             ->orWhere('ten_san_pham', 'like', "%{$search}%");
@@ -44,7 +44,7 @@ class SanPhamController extends Controller
 
         $title = "Danh sách sản phẩm";
 
-        return view('admins.sanpham.index', compact('title', 'listSanPham'));
+        return view('admins.sanpham.index', compact('title', 'listSanPhams'));
     }
 
     public function create()

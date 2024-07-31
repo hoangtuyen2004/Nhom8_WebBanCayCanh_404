@@ -49,7 +49,7 @@
                                     <th class="">Thao tác</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($listSanphams as $key=>$sanPham)
+                                    @foreach ($listSanPhams as $key=>$sanPham)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $sanPham->ma_san_pham }}</td>
