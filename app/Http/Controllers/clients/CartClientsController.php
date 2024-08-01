@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\clients;
 
+use App\Models\Giohang;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CartClientsController extends Controller
 {
@@ -21,6 +23,7 @@ class CartClientsController extends Controller
 
         //khởi tạo 1 mảng chưa thông tin giỏ hàng trên session 
         $cart =session()->get('cart',[]);
+    
 
         if(isset($cart[$productId])){
             //sản phẩm có tồn tại trong giỏ hàng không
@@ -35,6 +38,14 @@ class CartClientsController extends Controller
 
             ];
         }
+    // dd($cart[$productId]);
+
+    //     Giohang::create([
+    //     'so_luong' => $cart[$productId]['so_luong'],
+    //     'hinh_anh_san_pham' => $cart[$productId]['anh_san_pham'],
+    //     'gia_san_pham' => $cart[$productId]['gia_san_pham'],
+    //     'ten_san_pham' => $cart[$productId]['ten_san_pham'],
+    // ]);
         session()->put('cart',$cart);
         return redirect()->back();
 
