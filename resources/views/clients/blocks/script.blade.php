@@ -1,17 +1,28 @@
-<script src="../../../cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../assets/vendors/bootstrap/js/bootstrap.bundle.js"></script>
-<script src="../assets/vendors/clipboard/clipboard.min.js"></script>
-<script src="../assets/vendors/vanilla-lazyload/lazyload.min.js"></script>
-<script src="../assets/vendors/waypoints/jquery.waypoints.min.js"></script>
-<script src="../assets/vendors/lightgallery/lightgallery.min.js"></script>
-<script src="../assets/vendors/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
-<script src="../assets/vendors/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script src="../assets/vendors/lightgallery/plugins/video/lg-video.min.js"></script>
-<script src="../assets/vendors/lightgallery/plugins/vimeoThumbnail/lg-vimeo-thumbnail.min.js"></script>
-<script src="../assets/vendors/isotope/isotope.pkgd.min.js"></script>
-<script src="../assets/vendors/slick/slick.min.js"></script>
-<script src="../assets/vendors/gsap/gsap.min.js"></script>
-<script src="../assets/vendors/gsap/ScrollToPlugin.min.js"></script>
-<script src="../assets/vendors/gsap/ScrollTrigger.min.js"></script>
-<script src="../assets/vendors/mapbox-gl/mapbox-gl.js"></script>
-<script src="../assets/js/theme.min.js"></script>
+ <!-- Modernizer JS -->
+ <script src="{{asset('clients/corano/assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+ <!-- jQuery JS -->
+ <script src="{{asset('clients/corano/assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+ <!-- Bootstrap JS -->
+ <script src="{{asset('clients/corano/assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
+ <!-- slick Slider JS -->
+ <script src="{{asset('clients/corano/assets/js/plugins/slick.min.js')}}"></script>
+ <!-- Countdown JS -->
+ <script src="{{asset('clients/corano/assets/js/plugins/countdown.min.js')}}"></script>
+ <!-- Nice Select JS -->
+ <script src="{{asset('clients/corano/assets/js/plugins/nice-select.min.js')}}"></script>
+ <!-- jquery UI JS -->
+ <script src="{{asset('clients/corano/assets/js/plugins/jqueryui.min.js')}}"></script>
+ <!-- Image zoom JS -->
+ <script src="{{asset('clients/corano/assets/js/plugins/image-zoom.min.js')}}"></script>
+ <!-- Images loaded JS -->
+ <script src="{{asset('clients/corano/assets/js/plugins/imagesloaded.pkgd.min.js')}}"></script>
+ <!-- mail-chimp active js -->
+ <script src="{{asset('clients/corano/assets/js/plugins/ajaxchimp.js')}}"></script>
+ <!-- contact form dynamic js -->
+ <script src="{{asset('clients/corano/assets/js/plugins/ajax-mail.js')}}"></script>
+ <!-- google map api -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfmCVTjRI007pC1Yk2o2d_EhgkjTsFVN8"></script>
+ <!-- google map active js -->
+ <script src="{{asset('clients/corano/assets/js/plugins/google-map.js')}}"></script>
+ <!-- Main JS -->
+ <script src="{{asset('clients/corano/assets/js/main.js')}}"></script>

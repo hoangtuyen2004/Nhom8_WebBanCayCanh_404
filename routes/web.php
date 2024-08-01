@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
-// use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\admins\DanhMucController;
-use App\Http\Controllers\admins\SanPhamController;
+use App\Http\Controllers\clients\DetailController;
+use App\Http\Controllers\clients\HomeClientsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +21,14 @@ use App\Http\Controllers\admins\SanPhamController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeClientsController::class,'index']);
+
+Route::get('chitiet',[DetailController::class,'detail']);
 
 
 // Route::
 // Route resouce
-Route::resource('sanpham', SanphamController::class);
+Route::resource('sanpham', SanPhamController::class);
 
 // Route::get('/',[SanphamController::class,'index']);
 

@@ -1,13 +1,29 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Home Page 01 - Glowing - Bootstrap 5 HTML Templates</title>
-<link rel="icon" href="{{asset('assets/images/others/favicon.ico')}}">
-<link rel="stylesheet" href="{{asset('assets/vendors/lightgallery/css/lightgallery-bundle.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendors/animate/animate.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendors/slick/slick.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendors/mapbox-gl/mapbox-gl.min.css')}}">
-<link rel="stylesheet" href="{{asset('../../cdn.jsdelivr.net/npm/bootstrap-icons%401.9.1/font/bootstrap-icons.css')}}">
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{asset('assets/css/theme.css')}}">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Corano - Jewelry Shop eCommerce Bootstrap 5 Template</title>
+<meta name="robots" content="noindex, follow" />
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="{{asset('clients/corano/assets/img/favicon.ico')}}">
+
+<!-- CSS
+============================================ -->
+<!-- google fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/vendor/bootstrap.min.css')}}">
+<!-- Pe-icon-7-stroke CSS -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/vendor/pe-icon-7-stroke.css')}}">
+<!-- Font-awesome CSS -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/vendor/font-awesome.min.css')}}">
+<!-- Slick slider css -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/plugins/slick.min.css')}}">
+<!-- animate css -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/plugins/animate.css')}}">
+<!-- Nice Select css -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/plugins/nice-select.css')}}">
+<!-- jquery UI css -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/plugins/jqueryui.min.css')}}">
+<!-- main style css -->
+<link rel="stylesheet" href="{{asset('clients/corano//assets/css/style.css')}}">
