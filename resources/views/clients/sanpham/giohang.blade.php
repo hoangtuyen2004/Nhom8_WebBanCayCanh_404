@@ -50,11 +50,11 @@
                                     <tr>
                                         <td class="pro-thumbnail"><img class="img-fluid" src="{{Storage::url($as['anh_san_pham'])}}" alt="Product" /></td>
                                         <td class="pro-title"><a href="#">{{$as['ten_san_pham']}}</a></td>
-                                        <td class="pro-price"><span>{{$as['gia_san_pham']}}</span></td>
+                                        <td class="pro-price"><span>{{number_format($as['gia_san_pham'],0,'','.')}}</span></td>
                                         <td class="pro-quantity">
                                             <div class="pro-qty"><input type="text" value="{{$as['so_luong']}}"></div>
                                         </td>
-                                        <td class="pro-subtotal"><span>$295.00</span></td>
+                                        <td class="pro-subtotal"><span>{{number_format($as['gia_san_pham'] * $as['so_luong'],0,'','.')}}</span></td>
                                         <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                     </tr>
                                     @endforeach
