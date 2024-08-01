@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\clients\DetailController;
+use App\Http\Controllers\clients\CartClientsController;
 use App\Http\Controllers\clients\HomeClientsController;
 
 /*
@@ -23,7 +24,10 @@ use App\Http\Controllers\clients\HomeClientsController;
 
 Route::get('/',[HomeClientsController::class,'index']);
 
-Route::get('chitiet',[DetailController::class,'detail']);
+Route::get('sanpham/detail/{id}',[DetailController::class,'deltail'])->name('product-tetail');
+Route::get('list-cart-user',[CartClientsController::class,'ListCartUser'])->name('list-cart');
+Route::post('user-add-cart',[CartClientsController::class,'UserAddCart'])->name('add-cart');
+Route::post('user-edit-cart',[CartClientsController::class,'UserEditCart'])->name('edit-cart');
 
 
 // Route::

@@ -22,11 +22,11 @@
                                     </ul>
                                 </li>
                                 <li class="language">
-                                    <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/icon/en.png')}}" alt="flag"> English
+                                    <img src="{{asset('clients/corano/assets/img/icon/en.png')}}" alt="flag"> English
                                     <i class="fa fa-angle-down"></i>
                                     <ul class="dropdown-list">
-                                        <li><a href="#"><img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/icon/en.png')}}" alt="flag"> english</a></li>
-                                        <li><a href="#"><img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/icon/fr.png')}}" alt="flag"> french</a></li>
+                                        <li><a href="#"><img src="{{asset('clients/corano/assets/img/icon/en.png')}}" alt="flag"> english</a></li>
+                                        <li><a href="#"><img src="{{asset('clients/corano/assets/img/icon/fr.png')}}" alt="flag"> french</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -45,8 +45,8 @@
                     <!-- start logo area -->
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/logo/logo.png')}}" alt="Brand Logo">
+                            <a href="/">
+                                <img src="{{asset('clients/corano/assets/img/logo/logo.png')}}" alt="Brand Logo">
                             </a>
                         </div>
                     </div>
@@ -105,12 +105,12 @@
                                                 </li>
                                                 <li class="megamenu-banners d-none d-lg-block">
                                                     <a href="product-details.html">
-                                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/banner/img1-static-menu.jpg')}}" alt="">
+                                                        <img src="{{asset('clients/corano/assets/img/banner/img1-static-menu.jpg')}}" alt="">
                                                     </a>
                                                 </li>
                                                 <li class="megamenu-banners d-none d-lg-block">
                                                     <a href="product-details.html">
-                                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/banner/img2-static-menu.jpg')}}" alt="">
+                                                        <img src="{{asset('clients/corano/assets/img/banner/img2-static-menu.jpg')}}" alt="">
                                                     </a>
                                                 </li>
                                             </ul>
@@ -186,7 +186,7 @@
                                             <li><a href="login-register.html">register</a></li>
                                             <li><a href="my-account.html">my account</a></li>
                                         </ul>
-                                    </li>
+                                    </li>   
                                     <li>
                                         <a href="wishlist.html">
                                             <i class="pe-7s-like"></i>
@@ -194,9 +194,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="minicart-btn">
+                                        <a href="{{route('list-cart')}}" class="minicart-btn">
                                             <i class="pe-7s-shopbag"></i>
-                                            <div class="notification">2</div>
+                                            <div class="notification">{{session('cart') ? count(session('cart')) : '0' }}</div>
                                         </a>
                                     </li>
                                 </ul>
@@ -222,7 +222,7 @@
                     <div class="mobile-main-header">
                         <div class="mobile-logo">
                             <a href="index.html">
-                                <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/logo/logo.png')}}" alt="Brand Logo">
+                                <img src="{{asset('clients/corano/assets/img/logo/logo.png')}}" alt="Brand Logo">
                             </a>
                         </div>
                         <div class="mobile-menu-toggler">

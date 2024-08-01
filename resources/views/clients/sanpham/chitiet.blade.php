@@ -38,45 +38,21 @@
                             <div class="col-lg-5">
                                 <div class="product-large-slider">
                                     <div class="pro-large-img img-zoom">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img1.jpg')}}" alt="product-details')}}" />
+                                        <img src="{{Storage::url($sanpham->anh_san_pham)}}" alt="product-details')}}" />
                                     </div>
+                                    {{-- @foreach ( $sanpham->anh_san_pham as $anhsanpham )
                                     <div class="pro-large-img img-zoom">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img2.jpg')}}" alt="product-details')}}" />
+                                        <img src="{{Storage::url($anhsanpham ->anh_san_pham)}}" alt="product-details')}}" />
                                     </div>
-                                    <div class="pro-large-img img-zoom">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img3.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                    <div class="pro-large-img img-zoom">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img4.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                    <div class="pro-large-img img-zoom">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img5.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                </div>
-                                <div class="pro-nav slick-row-10 slick-arrow-style">
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img1.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img2.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img3.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img4.jpg')}}" alt="product-details')}}" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-details-img5.jpg')}}" alt="product-details')}}" />
-                                    </div>
+                                    @endforeach --}}    
                                 </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="product-details-des">
                                     <div class="manufacturer-name">
-                                        <a href="product-details.html">HasTech</a>
+                                        <a href="product-details.html">mã sản phẩm :{{$sanpham->ma_san_pham}}</a>
                                     </div>
-                                    <h3 class="product-name">Handmade Golden Necklace Full Family Package</h3>
+                                    <h3 class="product-name">{{$sanpham->ten_san_pham}}</h3>
                                     <div class="ratings d-flex">
                                         <span><i class="fa fa-star-o"></i></span>
                                         <span><i class="fa fa-star-o"></i></span>
@@ -88,39 +64,33 @@
                                         </div>
                                     </div>
                                     <div class="price-box">
-                                        <span class="price-regular">$70.00</span>
-                                        <span class="price-old"><del>$90.00</del></span>
+                                        <span class="price-regular">{{number_format($sanpham->gia_san_pham,0,'','.')}}</span>
                                     </div>
-                                    <h5 class="offer-text"><strong>Hurry up</strong>! offer ends in:</h5>
-                                    <div class="product-countdown" data-countdown="2022/12/20"></div>
+                                    <h5 class="offer-text"><strong>Nhanh lên</strong>! ưu đãi kết thúc sau:</h5>
+                                    <div class="product-countdown" data-countdown="2025/12/20"></div>
                                     <div class="availability">
                                         <i class="fa fa-check-circle"></i>
-                                        <span>200 in stock</span>
+                                        <span>200 trong kho</span>
                                     </div>
-                                    <p class="pro-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                        voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac
-                                        habitasse platea dictumst.</p>
-                                    <div class="quantity-cart-box d-flex align-items-center">
-                                        <h6 class="option-title">qty:</h6>
-                                        <div class="quantity">
-                                            <div class="pro-qty"><input type="text" value="1"></div>
+                                    <p class="pro-desc">{{$sanpham->mo_ta_san_pham}}</p>
+                                    <form action="{{route('add-cart')}}" method="POST">
+                                        @csrf
+                                        <div class="quantity-cart-box d-flex align-items-center">
+                                            <h6 class="option-title">số lượng   :</h6>
+                                            <div class="quantity">
+                                                <div class="pro-qty"><input type="text" value="1" name="quantity" id="quantityInput"></div>
+                                                <input type="hidden" name="product_id" value="{{$sanpham->id}}">
+                                            </div>
+                                            <div class="action_link">
+                                                <button class="btn btn-cart2" type="submit" class="btn btn-primary">thêm sản phẩm
+                                                </button>
+                                    
+                                            </div>
                                         </div>
-                                        <div class="action_link">
-                                            <a class="btn btn-cart2" href="#">Add to cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="pro-size">
-                                        <h6 class="option-title">size :</h6>
-                                        <select class="nice-select">
-                                            <option>S</option>
-                                            <option>M</option>
-                                            <option>L</option>
-                                            <option>XL</option>
-                                        </select>
-                                    </div>
+                                    </form>
+                                    
                                     <div class="color-option">
-                                        <h6 class="option-title">color :</h6>
+                                        <h6 class="option-title"></h6>
                                         <ul class="color-categories">
                                             <li>
                                                 <a class="c-lightblue" href="#" title="LightSteelblue"></a>
@@ -204,7 +174,7 @@
                                                 <h5>1 review for <span>Chaz Kangeroo</span></h5>
                                                 <div class="total-reviews">
                                                     <div class="rev-avatar">
-                                                        <img src="{{asset('clients/corano/{{asset('clients/corano/assets/img/about/avatar.jpg')}}" alt="">
+                                                        <img src="{{asset('clients/corano/assets/img/about/avatar.jpg')}}" alt="">
                                                     </div>
                                                     <div class="review-box">
                                                         <div class="ratings">
@@ -297,15 +267,16 @@
                     <!-- section title start -->
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col-12">
                     <div class="product-carousel-4 slick-row-10 slick-arrow-style">
+                        @foreach ($sanpham2 as $as )
                         <!-- product item start -->
                         <div class="product-item">
                             <figure class="product-thumb">
                                 <a href="product-details.html">
-                                    <img class="pri-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-11.jpg')}}" alt="product">
-                                    <img class="sec-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-8.jpg')}}" alt="product">
+                                    <img class="pri-img" src="{{Storage::url($as->anh_san_pham)}}" alt="product">
                                 </a>
                                 <div class="product-badge">
                                     <div class="product-label new">
@@ -318,10 +289,10 @@
                                 <div class="button-group">
                                     <a href="wishlist.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
                                     <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
+                                    <a href="{{route('product-tetail',$as->id)}}"data-bs-toggle="tooltip"  title="Quick View"><i class="pe-7s-search"></i></span></a>
                                 </div>
                                 <div class="cart-hover">
-                                    <button class="btn btn-cart">add to cart</button>
+                                    <button class="btn btn-cart"><a href="">thêm sản phẩm</a></button>
                                 </div>
                             </figure>
                             <div class="product-caption text-center">
@@ -343,232 +314,55 @@
                                     </li>
                                 </ul>
                                 <h6 class="product-name">
-                                    <a href="product-details.html">Perfect Diamond Jewelry</a>
+                                    <a href="product-details.html">{{$as->ten_san_pham}}</a>
                                 </h6>
                                 <div class="price-box">
-                                    <span class="price-regular">$60.00</span>
-                                    <span class="price-old"><del>$70.00</del></span>
+                                    <span class="price-regular">{{$as->gia_san_pham}}</span>
                                 </div>
                             </div>
                         </div>
                         <!-- product item end -->
-
-                        <!-- product item start -->
-                        <div class="product-item">
-                            <figure class="product-thumb">
-                                <a href="product-details.html">
-                                    <img class="pri-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-12.jpg')}}" alt="product">
-                                    <img class="sec-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-7.jpg')}}" alt="product">
-                                </a>
-                                <div class="product-badge">
-                                    <div class="product-label new">
-                                        <span>sale</span>
-                                    </div>
-                                    <div class="product-label discount">
-                                        <span>new</span>
-                                    </div>
-                                </div>
-                                <div class="button-group">
-                                    <a href="wishlist.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
-                                </div>
-                                <div class="cart-hover">
-                                    <button class="btn btn-cart">add to cart</button>
-                                </div>
-                            </figure>
-                            <div class="product-caption text-center">
-                                <div class="product-identity">
-                                    <p class="manufacturer-name"><a href="product-details.html">mony</a></p>
-                                </div>
-                                <ul class="color-categories">
-                                    <li>
-                                        <a class="c-lightblue" href="#" title="LightSteelblue"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-darktan" href="#" title="Darktan"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-grey" href="#" title="Grey"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-brown" href="#" title="Brown"></a>
-                                    </li>
-                                </ul>
-                                <h6 class="product-name">
-                                    <a href="product-details.html">Handmade Golden Necklace</a>
-                                </h6>
-                                <div class="price-box">
-                                    <span class="price-regular">$50.00</span>
-                                    <span class="price-old"><del>$80.00</del></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product item end -->
-
-                        <!-- product item start -->
-                        <div class="product-item">
-                            <figure class="product-thumb">
-                                <a href="product-details.html">
-                                    <img class="pri-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-13.jpg')}}" alt="product">
-                                    <img class="sec-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-6.jpg')}}" alt="product">
-                                </a>
-                                <div class="product-badge">
-                                    <div class="product-label new">
-                                        <span>new</span>
-                                    </div>
-                                </div>
-                                <div class="button-group">
-                                    <a href="wishlist.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
-                                </div>
-                                <div class="cart-hover">
-                                    <button class="btn btn-cart">add to cart</button>
-                                </div>
-                            </figure>
-                            <div class="product-caption text-center">
-                                <div class="product-identity">
-                                    <p class="manufacturer-name"><a href="product-details.html">Diamond</a></p>
-                                </div>
-                                <ul class="color-categories">
-                                    <li>
-                                        <a class="c-lightblue" href="#" title="LightSteelblue"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-darktan" href="#" title="Darktan"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-grey" href="#" title="Grey"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-brown" href="#" title="Brown"></a>
-                                    </li>
-                                </ul>
-                                <h6 class="product-name">
-                                    <a href="product-details.html">Perfect Diamond Jewelry</a>
-                                </h6>
-                                <div class="price-box">
-                                    <span class="price-regular">$99.00</span>
-                                    <span class="price-old"><del></del></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product item end -->
-
-                        <!-- product item start -->
-                        <div class="product-item">
-                            <figure class="product-thumb">
-                                <a href="product-details.html">
-                                    <img class="pri-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-14.jpg')}}" alt="product">
-                                    <img class="sec-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-5.jpg')}}" alt="product">
-                                </a>
-                                <div class="product-badge">
-                                    <div class="product-label new">
-                                        <span>sale</span>
-                                    </div>
-                                    <div class="product-label discount">
-                                        <span>15%</span>
-                                    </div>
-                                </div>
-                                <div class="button-group">
-                                    <a href="wishlist.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
-                                </div>
-                                <div class="cart-hover">
-                                    <button class="btn btn-cart">add to cart</button>
-                                </div>
-                            </figure>
-                            <div class="product-caption text-center">
-                                <div class="product-identity">
-                                    <p class="manufacturer-name"><a href="product-details.html">silver</a></p>
-                                </div>
-                                <ul class="color-categories">
-                                    <li>
-                                        <a class="c-lightblue" href="#" title="LightSteelblue"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-darktan" href="#" title="Darktan"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-grey" href="#" title="Grey"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-brown" href="#" title="Brown"></a>
-                                    </li>
-                                </ul>
-                                <h6 class="product-name">
-                                    <a href="product-details.html">Diamond Exclusive Ornament</a>
-                                </h6>
-                                <div class="price-box">
-                                    <span class="price-regular">$55.00</span>
-                                    <span class="price-old"><del>$75.00</del></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product item end -->
-
-                        <!-- product item start -->
-                        <div class="product-item">
-                            <figure class="product-thumb">
-                                <a href="product-details.html">
-                                    <img class="pri-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-15.jpg')}}" alt="product">
-                                    <img class="sec-img" src="{{asset('clients/corano/{{asset('clients/corano/assets/img/product/product-4.jpg')}}" alt="product">
-                                </a>
-                                <div class="product-badge">
-                                    <div class="product-label new">
-                                        <span>new</span>
-                                    </div>
-                                    <div class="product-label discount">
-                                        <span>20%</span>
-                                    </div>
-                                </div>
-                                <div class="button-group">
-                                    <a href="wishlist.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
-                                    <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
-                                </div>
-                                <div class="cart-hover">
-                                    <button class="btn btn-cart">add to cart</button>
-                                </div>
-                            </figure>
-                            <div class="product-caption text-center">
-                                <div class="product-identity">
-                                    <p class="manufacturer-name"><a href="product-details.html">mony</a></p>
-                                </div>
-                                <ul class="color-categories">
-                                    <li>
-                                        <a class="c-lightblue" href="#" title="LightSteelblue"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-darktan" href="#" title="Darktan"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-grey" href="#" title="Grey"></a>
-                                    </li>
-                                    <li>
-                                        <a class="c-brown" href="#" title="Brown"></a>
-                                    </li>
-                                </ul>
-                                <h6 class="product-name">
-                                    <a href="product-details.html">Citygold Exclusive Ring</a>
-                                </h6>
-                                <div class="price-box">
-                                    <span class="price-regular">$60.00</span>
-                                    <span class="price-old"><del>$70.00</del></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product item end -->
+                        @endforeach
                     </div>
                 </div>
             </div>
+         
+            
+           
         </div>
     </section>
     <!-- related products area end -->
 @endsection
 
 @section('JS')
-    
+    <script>
+        	// quantity change js
+    $('.pro-qty').prepend('<span class="dec qtybtn">-</span>');
+    $('.pro-qty').append('<span class="inc qtybtn">+</span>');
+    $('.qtybtn').on('click', function () {
+        var $button = $(this);
+        var $input = $button.parent().find('input');
+        var oldValue = parseFloat($input.val());
+
+        if($button.hasClass('inc')){
+            var newVal = oldValue +1 ;
+        }else{
+            if(oldvalue >1){
+                var newVal = oldValue -1;
+            }else{
+                var newVal =1 ;
+            }
+        }
+        $input.val(newVal);
+	});
+
+    //xử lý khi người dùng nhập số âm
+    $('#quantityInput').on('change',()=>{
+        var value = parseInt($(this).val(),10);
+        if(isNaN(value)||value <1){
+            alert('số lượng phải lớn hơn bằng 1');
+            $(this).val();  
+        }
+    })
+    </script>
 @endsection

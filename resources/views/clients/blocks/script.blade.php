@@ -26,3 +26,5 @@
  <script src="{{asset('clients/corano/assets/js/plugins/google-map.js')}}"></script>
  <!-- Main JS -->
  <script src="{{asset('clients/corano/assets/js/main.js')}}"></script>
+
+ @yield('JS')
