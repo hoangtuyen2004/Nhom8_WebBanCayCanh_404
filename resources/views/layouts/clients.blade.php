@@ -31,7 +31,7 @@
 
 
     <!-- JS-->
-    @yield('JS')
+    
     @include('clients.blocks.script')
     <!-- end JS-->
    

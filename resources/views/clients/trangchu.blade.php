@@ -561,10 +561,10 @@
                                                 <div class="button-group">
                                                     <a href="wishlist.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
                                                     <a href="compare.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
+                                                    <a href="{{route('product-tetail',$as->id)}}" data-bs-target="#quick_view"><span data-bs-toggle="tooltip" data-bs-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
                                                 </div>
                                                 <div class="cart-hover">
-                                                    <button class="btn btn-cart">thêm giỏ hàng</button>
+                                                    <button class="btn btn-cart"><a href="{{route('add-cart')}}"></a></button>
                                                 </div>
                                             </figure>
                                             <div class="product-caption text-center">

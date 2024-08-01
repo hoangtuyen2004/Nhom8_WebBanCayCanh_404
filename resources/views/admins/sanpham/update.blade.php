@@ -12,7 +12,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="" class="form-label">Hình ảnh:</label>
-                    <input type="file" class="form-control" name="hinh_anh">
+                    <input type="file" class="form-control" name="anh_san_pham">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Tên sản phẩm:</label>
@@ -39,7 +39,7 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Danh mục:</label>
                     <select class="form-select" name="danh_muc_id">
-                        @foreach ($danh_mucs as $item)
+                        @foreach ($danhmuc as $item)
                             <option {{ $item->id == $sanPham->danh_muc_id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->ten_danh_muc }}</option>
                         @endforeach
                     </select>

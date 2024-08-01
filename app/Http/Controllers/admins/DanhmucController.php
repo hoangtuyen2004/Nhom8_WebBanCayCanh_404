@@ -60,8 +60,8 @@ class DanhMucController extends Controller
     public function edit(string $id)
     {
         //
-        $data['danhmuc'] = DanhMuc::query()->find($id);
-        return view("admins.danhmuc.update", $data);
+        $data = DanhMuc::query()->find($id);
+        return view("admins.danhmuc.update",compact('data'));
     }
 
     /**
