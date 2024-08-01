@@ -23,7 +23,6 @@ use App\Http\Controllers\admins\taikhoanController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 // Route resouce
 Route::resource('sanpham', SanphamController::class);
 
