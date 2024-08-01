@@ -27,7 +27,7 @@ class DanhMucController extends Controller
      */
     public function create()
     {
-        //
+        
         return view("admins.danhmuc.create");
     }
 

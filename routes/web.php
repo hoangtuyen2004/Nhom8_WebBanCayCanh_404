@@ -6,8 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 // use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\DashboardController;
 use App\Http\Controllers\admins\SanPhamController;
-use App\Http\Controllers\admins\taikhoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +26,14 @@ Route::get('/', function () {
 // Route resouce
 Route::resource('sanpham', SanphamController::class);
 
-// Route::get('/',[SanphamController::class,'index']);
-
+// Admin-quản lý danh mục
 Route::resource('danhmuc', DanhMucController::class);
-
-Route::resource('admin-tai-khoans', taikhoanController::class);
+// Admin-quản lý tài khoản
+Route::resource('admin-tai-khoans', App\Http\Controllers\admins\taikhoanController::class);
+// Dashboard-admin
+Route::get('wp-admin', [DashboardController::class, 'index'])->name('wp-admin');
+// Admin-Quản lý đơn hàng
+Route::resource('admin-don-hang', App\Http\Controllers\admins\DonHangController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

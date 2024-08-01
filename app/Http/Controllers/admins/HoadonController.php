@@ -59,7 +59,7 @@ class HoadonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hoadon $hoadon)
+    public function destroy(Request $request, Hoadon $hoadon)
     {
         //
     }

@@ -51,7 +51,12 @@
                                             Admin
                                         @endif</td>
                                         <td class="">
-                                            <a class="btn btn-warning" href="{{ route('admin-tai-khoans.edit',$taiKhoan->id) }}">Sửa</a>
+                                            <form action="{{ route('admin-tai-khoans.destroy',$taiKhoan->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a class="btn btn-warning" href="{{ route('admin-tai-khoans.edit',$taiKhoan->id) }}">Sửa</a>
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
