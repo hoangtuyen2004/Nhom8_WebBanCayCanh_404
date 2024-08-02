@@ -37,7 +37,7 @@
                                             <td>{{$donHang->ma_hoa_dons}}</td>
                                             <td>{{$donHang->tong_tien}}đ</td>
                                             <td>{{$donHang->ngay_tao}}</td>
-                                            <td>@if($donHang->trang_thai ==1)<span class="label label-secondary">Chờ xác nhận @endif
+                                            <td>@if($donHang->trang_thai ==1)<span class="label label-success">Chờ xác nhận @endif
                                                 @if($donHang->trang_thai ==2)<span class="label label-info">Đã Xác Nhận @endif
                                                 @if($donHang->trang_thai ==3)<span class="label label-primary">Đang Giao @endif
                                                 @if($donHang->trang_thai ==4)<span class="label label-success">Đã Giao @endif

@@ -49,7 +49,7 @@ class DonHangController extends Controller
         $data['donHang'] = Hoadon::findOrFail($id);
         $data['donHangChiTiets'] = hoadonchitiet::query()->where('ma_hoa_dons', $data['donHang']['id'])->get();
         $data['sanPhams'] = SanPham::query()->get();
-        $data['taiKhoan'] = User::query()->find( $data['donHang']['id'] );
+        $data['taiKhoan'] = User::query()->find( $data['donHang']['ma_tai_khoans'] );
         return view("admins.donhang.detail", $data);
     }
 
