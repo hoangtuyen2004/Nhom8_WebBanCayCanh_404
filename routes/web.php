@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\DashboardController;
 use App\Http\Controllers\Admins\SanPhamController;
 use App\Http\Controllers\clients\DetailController;
 use App\Http\Controllers\clients\CartClientsController;
@@ -37,6 +38,9 @@ Route::resource('sanpham', SanPhamController::class);
 Route::get('/',[SanphamController::class,'index']);
 
 Route::resource('danhmuc', DanhMucController::class);
+Route::resource('admin-tai-khoans', App\Http\Controllers\admins\taikhoanController::class);
+Route::get('wp-admin', [DashboardController::class, 'index'])->name('wp-admin');
+Route::resource('admin-don-hang', App\Http\Controllers\admins\DonHangController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
